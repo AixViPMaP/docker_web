@@ -13,7 +13,7 @@ test -L $occonfig && unlink $occonfig
 test -d $occonfig && mv $occonfig{,.orig}
 ln -s /occonfig $occonfig
 
-$skip_owncloud_setup || sudo -E -u apache bash /owncloud-setup.sh
+test ${empty:-false} = true || sudo -E -u apache bash /owncloud-setup.sh
 
 rm -rf /run/httpd/*
 rm -rf /var/run/httpd/httpd.pid
