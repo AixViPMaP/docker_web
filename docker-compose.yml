@@ -1,0 +1,30 @@
+# docker-compose.yml
+# AixViPMaP Web
+# Lukas Koschmieder <lukas.koschmieder@rwth-aachen.de>
+# (c) 2016-18 ICMEaix RWTH Aachen University
+
+version: '2'
+services:
+    axweb:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: aixvipmap/web
+        container_name: axweb
+
+        network_mode: bridge
+        hostname: localhost
+        ports:
+            - "80:80" # HTTP
+            - "443:443" # HTTPS
+
+        volumes:
+            - ./vol_occonfig:/occonfig
+            - ./vol_ocdata:/ocdata
+
+        environment:
+            - skip_owncloud_setup=false # {true|false}
+        env_file:
+            - owncloud.env
+
+        entrypoint: bash /docker-entrypoint.sh
