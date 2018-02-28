@@ -24,4 +24,5 @@ php occ app:disable files_videoplayer
 php occ app:disable firstrunwizard
 
 php occ app:enable aixvipmap_theme
+php occ app:enable files_duplicate
 php occ app:enable inline_menu

@@ -35,16 +35,21 @@ RUN yum install -y owncloud-files
 
 RUN yum -y install git
 RUN git clone --depth=1 --branch=master https://github.com/AixViPMaP/aixvipmap_theme.git /var/www/html/owncloud/apps/aixvipmap_theme
+RUN git clone --depth=1 --branch=master https://github.com/AixViPMaP/files_duplicate.git /var/www/html/owncloud/apps/files_duplicate
 RUN git clone --depth=1 --branch=master https://github.com/AixViPMaP/inline_menu.git /var/www/html/owncloud/apps/inline_menu
 
 RUN rm -rf /var/www/html/owncloud/apps/aixvipmap_theme/.git
+RUN rm -rf /var/www/html/owncloud/apps/files_duplicate/.git
 RUN rm -rf /var/www/html/owncloud/apps/inline_menu/.git
 
 RUN chown -R apache. /var/www/html/owncloud/apps/aixvipmap_theme
+RUN chown -R apache. /var/www/html/owncloud/apps/files_duplicate
 RUN chown -R apache. /var/www/html/owncloud/apps/inline_menu
 
 RUN find /var/www/html/owncloud/apps/aixvipmap_theme -type f -exec chmod 640 {} \;
 RUN find /var/www/html/owncloud/apps/aixvipmap_theme -type d -exec chmod 750 {} \;
+RUN find /var/www/html/owncloud/apps/files_duplicate -type f -exec chmod 640 {} \;
+RUN find /var/www/html/owncloud/apps/files_duplicate -type d -exec chmod 750 {} \;
 RUN find /var/www/html/owncloud/apps/inline_menu -type f -exec chmod 640 {} \;
 RUN find /var/www/html/owncloud/apps/inline_menu -type d -exec chmod 750 {} \;
 
@@ -52,7 +57,7 @@ RUN find /var/www/html/owncloud/apps/inline_menu -type d -exec chmod 750 {} \;
 
 RUN yum install -y sudo
 
-### Config
+### Config files
 
 COPY apache2/aixvipmap.conf /etc/httpd/conf.d/
 COPY apache2/ssl.conf /etc/httpd/conf.d/
