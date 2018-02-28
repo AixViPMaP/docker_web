@@ -1,5 +1,5 @@
-docker_web (Docker image)
-=========================
+owncloud (Docker image)
+=======================
 
 AixViPMaP ownCloud web interface
 
