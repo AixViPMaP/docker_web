@@ -10,15 +10,6 @@ RUN yum update -y
 
 RUN yum install -y httpd mod_ssl
 
-COPY apache2/aixvipmap.conf /etc/httpd/conf.d/
-COPY apache2/ssl.conf /etc/httpd/conf.d/
-
-COPY apache2/cert.pem /etc/httpd/
-COPY apache2/chain.pem /etc/httpd/
-COPY apache2/key.pem /etc/httpd/
-
-RUN chmod 400 /etc/httpd/*.pem
-
 ### PHP 5.6
 
 RUN yum install -y centos-release-scl
@@ -60,6 +51,17 @@ RUN find /var/www/html/owncloud/apps/inline_menu -type d -exec chmod 750 {} \;
 ### Misc
 
 RUN yum install -y sudo
+
+### Config
+
+COPY apache2/aixvipmap.conf /etc/httpd/conf.d/
+COPY apache2/ssl.conf /etc/httpd/conf.d/
+
+COPY apache2/cert.pem /etc/httpd/
+COPY apache2/chain.pem /etc/httpd/
+COPY apache2/key.pem /etc/httpd/
+
+RUN chmod 600 /etc/httpd/*.pem
 
 COPY ./owncloud-setup.sh /
 COPY ./docker-entrypoint.sh /
