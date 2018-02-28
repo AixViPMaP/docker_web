@@ -5,12 +5,12 @@
 
 version: '2'
 services:
-    axweb:
+    owncloud:
         build:
             context: .
             dockerfile: Dockerfile
-        image: aixvipmap/web
-        container_name: axweb
+        image: aixvipmap/owncloud
+        container_name: owncloud
 
         network_mode: bridge
         hostname: localhost
