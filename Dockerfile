@@ -1,5 +1,4 @@
 # Dockerfile
-# AixViPMaP Web
 # (c) 2016-18 ICMEaix RWTH Aachen University
 FROM centos:7
 MAINTAINER Lukas Koschmieder <lukas.koschmieder@rwth-aachen.de>
@@ -70,3 +69,5 @@ RUN chmod 600 /etc/httpd/*.pem
 
 COPY ./owncloud-setup.sh /
 COPY ./docker-entrypoint.sh /
+
+RUN chmod 664 /owncloud-setup.sh
